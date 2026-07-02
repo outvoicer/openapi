@@ -172,7 +172,25 @@
                   "items": {
                     "$ref": "#/components/schemas/Client"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "yescapital",
+                    "name": "Yes Capital OY",
+                    "regCode": "17527906",
+                    "taxVAT": true,
+                    "VATNumber": "EE101884549",
+                    "address": "Roosikrantsi tn 11",
+                    "city": "Tallinn",
+                    "country": "Estonia",
+                    "zip": "10119",
+                    "email": "email@email.ee",
+                    "refNumber": "599773",
+                    "discount": "10",
+                    "language": "ee",
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -434,7 +452,25 @@
                   "items": {
                     "$ref": "#/components/schemas/Client"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "yescapital",
+                    "name": "Yes Capital OY",
+                    "regCode": "17527906",
+                    "taxVAT": true,
+                    "VATNumber": "EE101884549",
+                    "address": "Roosikrantsi tn 11",
+                    "city": "Tallinn",
+                    "country": "Estonia",
+                    "zip": "10119",
+                    "email": "email@email.ee",
+                    "refNumber": "599773",
+                    "discount": "10",
+                    "language": "ee",
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -1321,17 +1357,18 @@
             "example": {
               "id": "yescapital",
               "name": "Yes Capital OY",
-              "regCode": "12710066",
-              "address": "Virulainen 4",
-              "zip": "10140",
-              "city": "Helsinki",
-              "email": "billing@yescapital.co",
-              "country": "Finland",
+              "regCode": "17527906",
               "taxVAT": true,
-              "VATNumber": "FI12345679",
-              "refNumber": "130239",
-              "discount": 20,
-              "language": "lv"
+              "VATNumber": "EE101884549",
+              "address": "Roosikrantsi tn 11",
+              "city": "Tallinn",
+              "country": "Estonia",
+              "zip": "10119",
+              "email": "email@email.ee",
+              "refNumber": "599773",
+              "discount": "10",
+              "language": "ee",
+              "additionalProperty": "anything"
             }
           }
         }
@@ -1380,6 +1417,22 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Client"
+            },
+            "example": {
+              "id": "yescapital",
+              "name": "Yes Capital OY",
+              "regCode": "17527906",
+              "taxVAT": true,
+              "VATNumber": "EE101884549",
+              "address": "Roosikrantsi tn 11",
+              "city": "Tallinn",
+              "country": "Estonia",
+              "zip": "10119",
+              "email": "email@email.ee",
+              "refNumber": "599773",
+              "discount": "10",
+              "language": "ee",
+              "additionalProperty": "anything"
             }
           }
         }
@@ -1610,9 +1663,16 @@
             "example": "130239"
           },
           "discount": {
-            "type": "number",
-            "description": "Customer discount as a percentage",
-            "example": 20
+            "description": "Customer discount as a percentage; number or numeric string",
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": "10"
           },
           "language": {
             "type": "string",
@@ -1620,11 +1680,27 @@
             "example": "lv"
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "yescapital",
+          "name": "Yes Capital OY",
+          "regCode": "17527906",
+          "taxVAT": true,
+          "VATNumber": "EE101884549",
+          "address": "Roosikrantsi tn 11",
+          "city": "Tallinn",
+          "country": "Estonia",
+          "zip": "10119",
+          "email": "email@email.ee",
+          "refNumber": "599773",
+          "discount": "10",
+          "language": "ee",
+          "additionalProperty": "anything"
+        }
       },
       "Client": {
         "type": "object",
-        "description": "Full client object as returned by the API. The data store is NoSQL, so extra fields may be present, and some legacy fields may have mixed types.",
+        "description": "Full client object as returned by the API. The data store is NoSQL, so extra fields may be present (see `additionalProperty` in the example), and some legacy fields may have mixed types.",
         "required": ["id", "name"],
         "properties": {
           "id": {
@@ -1660,10 +1736,6 @@
                 "type": "integer"
               }
             ]
-          },
-          "VATAccountable": {
-            "type": "boolean",
-            "nullable": true
           },
           "VATNumber": {
             "nullable": true,
@@ -1712,34 +1784,17 @@
             "nullable": true
           },
           "discount": {
-            "type": "number",
             "nullable": true,
-            "description": "Customer discount as a percentage"
-          },
-          "coupon": {
-            "nullable": true,
+            "description": "Customer discount as a percentage; may be a number or numeric string",
             "oneOf": [
               {
-                "type": "string"
+                "type": "number"
               },
-              {
-                "type": "integer"
-              },
-              {
-                "type": "boolean"
-              }
-            ]
-          },
-          "planId": {
-            "nullable": true,
-            "oneOf": [
               {
                 "type": "string"
-              },
-              {
-                "type": "integer"
               }
-            ]
+            ],
+            "example": "10"
           },
           "language": {
             "type": "string",
@@ -1749,29 +1804,25 @@
             "type": "string",
             "nullable": true,
             "description": "Id of the client in the connected accounting software (e.g. Merit)"
-          },
-          "delivery": {
-            "type": "string",
-            "nullable": true,
-            "description": "Current delivery channel (see DeliveryType)"
-          },
-          "einvoiceAddress": {
-            "$ref": "#/components/schemas/EstonianEinvoiceAddress"
-          },
-          "finvoice": {
-            "nullable": true,
-            "description": "Finvoice address; legacy data may contain `false` meaning 'not available'",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/Finvoice"
-              },
-              {
-                "type": "boolean"
-              }
-            ]
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "yescapital",
+          "name": "Yes Capital OY",
+          "regCode": "17527906",
+          "taxVAT": true,
+          "VATNumber": "EE101884549",
+          "address": "Roosikrantsi tn 11",
+          "city": "Tallinn",
+          "country": "Estonia",
+          "zip": "10119",
+          "email": "email@email.ee",
+          "refNumber": "599773",
+          "discount": "10",
+          "language": "ee",
+          "additionalProperty": "anything"
+        }
       },
       "ProductInput": {
         "type": "object",
