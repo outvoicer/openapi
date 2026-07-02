@@ -959,10 +959,138 @@
       }
     },
     "/api/company": {
+      "get": {
+        "tags": ["Company"],
+        "summary": "Get seller company settings",
+        "operationId": "getCompany",
+        "responses": {
+          "200": {
+            "description": "Full current state of the company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Seller"
+                },
+                "example": {
+                  "name": "CostPocket SIA",
+                  "regCode": "40203537286",
+                  "taxVAT": true,
+                  "VATNumber": "LV40203537286",
+                  "address": "Eduarda Smiļģa iela 32 - 19",
+                  "zip": "LV-1002",
+                  "city": "Rīga",
+                  "country": "Latvia",
+                  "currency": "EUR",
+                  "debit": "3000",
+                  "email": "support@outvoicer.com",
+                  "dueDays": 14,
+                  "lastInvoice": 200668,
+                  "prefix": "Outvoicer-",
+                  "bankAccounts": [
+                    {
+                      "id": 1,
+                      "IBAN": "LV94HABA0551056496751",
+                      "bank": "SWEDBANK AS",
+                      "swift": "HABALV22"
+                    }
+                  ],
+                  "additionalProperty": "anything"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Company"],
+        "summary": "Create / set seller company settings",
+        "operationId": "createCompany",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyUpdate"
+              },
+              "example": {
+                "name": "CostPocket SIA",
+                "regCode": "40203537286",
+                "taxVAT": true,
+                "VATNumber": "LV40203537286",
+                "address": "Eduarda Smiļģa iela 32 - 19",
+                "zip": "LV-1002",
+                "city": "Rīga",
+                "country": "Latvia",
+                "currency": "EUR",
+                "debit": "3000",
+                "email": "support@outvoicer.com",
+                "dueDays": 14,
+                "lastInvoice": 200668,
+                "prefix": "Outvoicer-",
+                "bankAccounts": [
+                  {
+                    "id": 1,
+                    "IBAN": "LV94HABA0551056496751",
+                    "bank": "SWEDBANK AS",
+                    "swift": "HABALV22"
+                  }
+                ],
+                "additionalProperty": "anything"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Full current state of the company",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Seller"
+                },
+                "example": {
+                  "name": "CostPocket SIA",
+                  "regCode": "40203537286",
+                  "taxVAT": true,
+                  "VATNumber": "LV40203537286",
+                  "address": "Eduarda Smiļģa iela 32 - 19",
+                  "zip": "LV-1002",
+                  "city": "Rīga",
+                  "country": "Latvia",
+                  "currency": "EUR",
+                  "debit": "3000",
+                  "email": "support@outvoicer.com",
+                  "dueDays": 14,
+                  "lastInvoice": 200668,
+                  "prefix": "Outvoicer-",
+                  "bankAccounts": [
+                    {
+                      "id": 1,
+                      "IBAN": "LV94HABA0551056496751",
+                      "bank": "SWEDBANK AS",
+                      "swift": "HABALV22"
+                    }
+                  ],
+                  "additionalProperty": "anything"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
       "put": {
         "tags": ["Company"],
         "summary": "Update seller company settings",
-        "description": "Example: set an invoice number prefix to avoid duplicate invoice numbers in the accounting software: `{ \"prefix\": \"api\" }`.",
+        "description": "Partial update — send only the fields you want to change. Example: set an invoice number prefix to avoid duplicate invoice numbers in the accounting software: { \"prefix\": \"api\" }.",
         "operationId": "updateCompany",
         "requestBody": {
           "required": true,
@@ -979,11 +1107,36 @@
         },
         "responses": {
           "200": {
-            "description": "Full new current state of the company",
+            "description": "Full current state of the company",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Seller"
+                },
+                "example": {
+                  "name": "CostPocket SIA",
+                  "regCode": "40203537286",
+                  "taxVAT": true,
+                  "VATNumber": "LV40203537286",
+                  "address": "Eduarda Smiļģa iela 32 - 19",
+                  "zip": "LV-1002",
+                  "city": "Rīga",
+                  "country": "Latvia",
+                  "currency": "EUR",
+                  "debit": "3000",
+                  "email": "support@outvoicer.com",
+                  "dueDays": 14,
+                  "lastInvoice": 200668,
+                  "prefix": "Outvoicer-",
+                  "bankAccounts": [
+                    {
+                      "id": 1,
+                      "IBAN": "LV94HABA0551056496751",
+                      "bank": "SWEDBANK AS",
+                      "swift": "HABALV22"
+                    }
+                  ],
+                  "additionalProperty": "anything"
                 }
               }
             }
@@ -2484,12 +2637,68 @@
       },
       "CompanyUpdate": {
         "type": "object",
-        "description": "Partial update of seller company settings",
+        "description": "Seller company settings. All fields are optional — send only the ones you want to set/update (e.g. just { \"prefix\": \"api\" }). The data store is NoSQL, so extra fields are allowed.",
         "properties": {
+          "name": {
+            "type": "string",
+            "example": "CostPocket SIA"
+          },
+          "regCode": {
+            "type": "string",
+            "example": "40203537286"
+          },
+          "taxVAT": {
+            "type": "boolean",
+            "example": true
+          },
+          "VATNumber": {
+            "type": "string",
+            "example": "LV40203537286"
+          },
+          "address": {
+            "type": "string",
+            "example": "Eduarda Smiļģa iela 32 - 19"
+          },
+          "zip": {
+            "type": "string",
+            "example": "LV-1002"
+          },
+          "city": {
+            "type": "string",
+            "example": "Rīga"
+          },
+          "country": {
+            "type": "string",
+            "example": "Latvia"
+          },
+          "currency": {
+            "type": "string",
+            "example": "EUR"
+          },
+          "debit": {
+            "type": "string",
+            "description": "Default sales revenue account",
+            "example": "3000"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "support@outvoicer.com"
+          },
+          "dueDays": {
+            "type": "integer",
+            "example": 14
+          },
           "prefix": {
             "type": "string",
-            "description": "Invoice number prefix, e.g. `api`",
+            "description": "Invoice number prefix; useful to avoid duplicate invoice numbers in the accounting software",
             "example": "api"
+          },
+          "bankAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankAccount"
+            }
           }
         },
         "additionalProperties": true
