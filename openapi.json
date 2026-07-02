@@ -1698,6 +1698,186 @@
           }
         }
       }
+    },
+    "/api/product/view/integration": {
+      "get": {
+        "tags": ["Product Integration"],
+        "summary": "View all products in the accounting software",
+        "description": "Not all accounting softwares have all integration endpoints available.",
+        "operationId": "viewProductsInIntegration",
+        "responses": {
+          "200": {
+            "description": "Products as stored in the accounting software",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
+    },
+    "/api/product/{productId}/view/integration": {
+      "get": {
+        "tags": ["Product Integration"],
+        "summary": "View one product in the accounting software",
+        "operationId": "viewProductInIntegration",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product as stored in the accounting software",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
+    },
+    "/api/product/{productId}/from/integration": {
+      "delete": {
+        "tags": ["Product Integration"],
+        "summary": "Delete product from the accounting software integration",
+        "operationId": "deleteProductFromIntegration",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted from the integration"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
+    },
+    "/api/sell/view/integration": {
+      "get": {
+        "tags": ["Invoice Integration"],
+        "summary": "View all invoices in the accounting software",
+        "description": "Not all accounting softwares have all integration endpoints available.",
+        "operationId": "viewInvoicesInIntegration",
+        "responses": {
+          "200": {
+            "description": "Invoices as stored in the accounting software",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
+    },
+    "/api/sell/{id}/view/integration": {
+      "get": {
+        "tags": ["Invoice Integration"],
+        "summary": "View one invoice in the accounting software",
+        "operationId": "viewInvoiceInIntegration",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invoice as stored in the accounting software",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
+    },
+    "/api/sell/{id}/from/integration": {
+      "delete": {
+        "tags": ["Invoice Integration"],
+        "summary": "Delete invoice from the accounting software integration",
+        "operationId": "deleteInvoiceFromIntegration",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Invoice deleted from the integration"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
+        }
+      }
     }
   },
   "components": {
