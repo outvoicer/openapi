@@ -1367,7 +1367,7 @@
       }
     },
     "/api/sell/{id}/print": {
-      "get": {
+      "post": {
         "tags": ["Invoice"],
         "summary": "Create the invoice PDF and assign an invoice number",
         "description": "The invoice can be printed many times; the invoice number is assigned only on the first print.",
@@ -1387,6 +1387,9 @@
           "404": {
             "$ref": "#/components/responses/NotFound"
           }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
         }
       }
     },
