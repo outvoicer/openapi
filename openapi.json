@@ -506,7 +506,83 @@
                   "items": {
                     "$ref": "#/components/schemas/Invoice"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "69f2212bac38fd7df540535a",
+                    "nr": "200669",
+                    "date": "1782766800000",
+                    "due": "1783976400000",
+                    "dateFormated": "2026-06-30",
+                    "dueFormated": "2026-07-14",
+                    "seller": {
+                      "name": "CostPocket SIA",
+                      "regCode": "40203537286",
+                      "taxVAT": true,
+                      "VATNumber": "LV40203537286",
+                      "address": "Eduarda Smiļģa iela 32 - 19",
+                      "zip": "LV-1002",
+                      "city": "Rīga",
+                      "country": "Latvia",
+                      "currency": "EUR",
+                      "debit": "3000",
+                      "email": "support@outvoicer.com",
+                      "dueDays": 14,
+                      "lastInvoice": 200668,
+                      "prefix": "Outvoicer-",
+                      "bankAccounts": [
+                        {
+                          "id": 1,
+                          "IBAN": "LV94HABA0551056496751",
+                          "bank": "SWEDBANK AS",
+                          "swift": "HABALV22"
+                        }
+                      ],
+                      "additionalProperty": "anything"
+                    },
+                    "buyer": {
+                      "id": "yescapital",
+                      "name": "Yes Capital OY",
+                      "regCode": "17527906",
+                      "taxVAT": true,
+                      "VATNumber": "EE101884549",
+                      "address": "Roosikrantsi tn 11",
+                      "city": "Tallinn",
+                      "country": "Estonia",
+                      "zip": "10119",
+                      "email": "email@email.ee",
+                      "refNumber": "599773",
+                      "discount": "10",
+                      "language": "ee",
+                      "additionalProperty": "anything"
+                    },
+                    "lines": [
+                      {
+                        "id": "sakuma-menesa-plans",
+                        "product": "sakuma-menesa-plans",
+                        "name": "Sākuma Mēneša plāns",
+                        "VATRate": 21,
+                        "unitPrice": "3.63",
+                        "unit": "pc",
+                        "amount": "3.63",
+                        "rounding": "0",
+                        "comment": "string",
+                        "debit": "3000",
+                        "subtotal": "3.63",
+                        "VAT": "3.63",
+                        "total": "3.63",
+                        "additionalProperty": "anything"
+                      }
+                    ],
+                    "currency": "EUR",
+                    "subtotal": "3.63",
+                    "VAT": "3.63",
+                    "total": "3.63",
+                    "sent": true,
+                    "status": "sent",
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -936,7 +1012,83 @@
                   "items": {
                     "$ref": "#/components/schemas/Invoice"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "69f2212bac38fd7df540535a",
+                    "nr": "200669",
+                    "date": "1782766800000",
+                    "due": "1783976400000",
+                    "dateFormated": "2026-06-30",
+                    "dueFormated": "2026-07-14",
+                    "seller": {
+                      "name": "CostPocket SIA",
+                      "regCode": "40203537286",
+                      "taxVAT": true,
+                      "VATNumber": "LV40203537286",
+                      "address": "Eduarda Smiļģa iela 32 - 19",
+                      "zip": "LV-1002",
+                      "city": "Rīga",
+                      "country": "Latvia",
+                      "currency": "EUR",
+                      "debit": "3000",
+                      "email": "support@outvoicer.com",
+                      "dueDays": 14,
+                      "lastInvoice": 200668,
+                      "prefix": "Outvoicer-",
+                      "bankAccounts": [
+                        {
+                          "id": 1,
+                          "IBAN": "LV94HABA0551056496751",
+                          "bank": "SWEDBANK AS",
+                          "swift": "HABALV22"
+                        }
+                      ],
+                      "additionalProperty": "anything"
+                    },
+                    "buyer": {
+                      "id": "yescapital",
+                      "name": "Yes Capital OY",
+                      "regCode": "17527906",
+                      "taxVAT": true,
+                      "VATNumber": "EE101884549",
+                      "address": "Roosikrantsi tn 11",
+                      "city": "Tallinn",
+                      "country": "Estonia",
+                      "zip": "10119",
+                      "email": "email@email.ee",
+                      "refNumber": "599773",
+                      "discount": "10",
+                      "language": "ee",
+                      "additionalProperty": "anything"
+                    },
+                    "lines": [
+                      {
+                        "id": "sakuma-menesa-plans",
+                        "product": "sakuma-menesa-plans",
+                        "name": "Sākuma Mēneša plāns",
+                        "VATRate": 21,
+                        "unitPrice": "3.63",
+                        "unit": "pc",
+                        "amount": "3.63",
+                        "rounding": "0",
+                        "comment": "string",
+                        "debit": "3000",
+                        "subtotal": "3.63",
+                        "VAT": "3.63",
+                        "total": "3.63",
+                        "additionalProperty": "anything"
+                      }
+                    ],
+                    "currency": "EUR",
+                    "subtotal": "3.63",
+                    "VAT": "3.63",
+                    "total": "3.63",
+                    "sent": true,
+                    "status": "sent",
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -1245,7 +1397,83 @@
                   "items": {
                     "$ref": "#/components/schemas/Invoice"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "69f2212bac38fd7df540535a",
+                    "nr": "200669",
+                    "date": "1782766800000",
+                    "due": "1783976400000",
+                    "dateFormated": "2026-06-30",
+                    "dueFormated": "2026-07-14",
+                    "seller": {
+                      "name": "CostPocket SIA",
+                      "regCode": "40203537286",
+                      "taxVAT": true,
+                      "VATNumber": "LV40203537286",
+                      "address": "Eduarda Smiļģa iela 32 - 19",
+                      "zip": "LV-1002",
+                      "city": "Rīga",
+                      "country": "Latvia",
+                      "currency": "EUR",
+                      "debit": "3000",
+                      "email": "support@outvoicer.com",
+                      "dueDays": 14,
+                      "lastInvoice": 200668,
+                      "prefix": "Outvoicer-",
+                      "bankAccounts": [
+                        {
+                          "id": 1,
+                          "IBAN": "LV94HABA0551056496751",
+                          "bank": "SWEDBANK AS",
+                          "swift": "HABALV22"
+                        }
+                      ],
+                      "additionalProperty": "anything"
+                    },
+                    "buyer": {
+                      "id": "yescapital",
+                      "name": "Yes Capital OY",
+                      "regCode": "17527906",
+                      "taxVAT": true,
+                      "VATNumber": "EE101884549",
+                      "address": "Roosikrantsi tn 11",
+                      "city": "Tallinn",
+                      "country": "Estonia",
+                      "zip": "10119",
+                      "email": "email@email.ee",
+                      "refNumber": "599773",
+                      "discount": "10",
+                      "language": "ee",
+                      "additionalProperty": "anything"
+                    },
+                    "lines": [
+                      {
+                        "id": "sakuma-menesa-plans",
+                        "product": "sakuma-menesa-plans",
+                        "name": "Sākuma Mēneša plāns",
+                        "VATRate": 21,
+                        "unitPrice": "3.63",
+                        "unit": "pc",
+                        "amount": "3.63",
+                        "rounding": "0",
+                        "comment": "string",
+                        "debit": "3000",
+                        "subtotal": "3.63",
+                        "VAT": "3.63",
+                        "total": "3.63",
+                        "additionalProperty": "anything"
+                      }
+                    ],
+                    "currency": "EUR",
+                    "subtotal": "3.63",
+                    "VAT": "3.63",
+                    "total": "3.63",
+                    "sent": true,
+                    "status": "sent",
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -1486,6 +1714,80 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Invoice"
+            },
+            "example": {
+              "id": "69f2212bac38fd7df540535a",
+              "nr": "200669",
+              "date": "1782766800000",
+              "due": "1783976400000",
+              "dateFormated": "2026-06-30",
+              "dueFormated": "2026-07-14",
+              "seller": {
+                "name": "CostPocket SIA",
+                "regCode": "40203537286",
+                "taxVAT": true,
+                "VATNumber": "LV40203537286",
+                "address": "Eduarda Smiļģa iela 32 - 19",
+                "zip": "LV-1002",
+                "city": "Rīga",
+                "country": "Latvia",
+                "currency": "EUR",
+                "debit": "3000",
+                "email": "support@outvoicer.com",
+                "dueDays": 14,
+                "lastInvoice": 200668,
+                "prefix": "Outvoicer-",
+                "bankAccounts": [
+                  {
+                    "id": 1,
+                    "IBAN": "LV94HABA0551056496751",
+                    "bank": "SWEDBANK AS",
+                    "swift": "HABALV22"
+                  }
+                ],
+                "additionalProperty": "anything"
+              },
+              "buyer": {
+                "id": "yescapital",
+                "name": "Yes Capital OY",
+                "regCode": "17527906",
+                "taxVAT": true,
+                "VATNumber": "EE101884549",
+                "address": "Roosikrantsi tn 11",
+                "city": "Tallinn",
+                "country": "Estonia",
+                "zip": "10119",
+                "email": "email@email.ee",
+                "refNumber": "599773",
+                "discount": "10",
+                "language": "ee",
+                "additionalProperty": "anything"
+              },
+              "lines": [
+                {
+                  "id": "sakuma-menesa-plans",
+                  "product": "sakuma-menesa-plans",
+                  "name": "Sākuma Mēneša plāns",
+                  "VATRate": 21,
+                  "unitPrice": "3.63",
+                  "unit": "pc",
+                  "amount": "3.63",
+                  "rounding": "0",
+                  "comment": "string",
+                  "debit": "3000",
+                  "subtotal": "3.63",
+                  "VAT": "3.63",
+                  "total": "3.63",
+                  "additionalProperty": "anything"
+                }
+              ],
+              "currency": "EUR",
+              "subtotal": "3.63",
+              "VAT": "3.63",
+              "total": "3.63",
+              "sent": true,
+              "status": "sent",
+              "additionalProperty": "anything"
             }
           }
         }
@@ -2013,9 +2315,6 @@
             "description": "Always a JSON number, e.g. 21 or 21.5",
             "example": 21
           },
-          "exception": {
-            "$ref": "#/components/schemas/LineException"
-          },
           "unitPrice": {
             "$ref": "#/components/schemas/NumberOrNumericString"
           },
@@ -2037,10 +2336,6 @@
             "description": "Sales revenue account",
             "example": "3000"
           },
-          "country": {
-            "type": "string",
-            "description": "Set to the buyer country when exception = MOSS"
-          },
           "subtotal": {
             "$ref": "#/components/schemas/NumberOrNumericString"
           },
@@ -2051,7 +2346,23 @@
             "$ref": "#/components/schemas/NumberOrNumericString"
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "sakuma-menesa-plans",
+          "product": "sakuma-menesa-plans",
+          "name": "Sākuma Mēneša plāns",
+          "VATRate": 21,
+          "unitPrice": "3.63",
+          "unit": "pc",
+          "amount": "3.63",
+          "rounding": "0",
+          "comment": "string",
+          "debit": "3000",
+          "subtotal": "3.63",
+          "VAT": "3.63",
+          "total": "3.63",
+          "additionalProperty": "anything"
+        }
       },
       "BankAccount": {
         "type": "object",
@@ -2144,7 +2455,32 @@
             }
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "name": "CostPocket SIA",
+          "regCode": "40203537286",
+          "taxVAT": true,
+          "VATNumber": "LV40203537286",
+          "address": "Eduarda Smiļģa iela 32 - 19",
+          "zip": "LV-1002",
+          "city": "Rīga",
+          "country": "Latvia",
+          "currency": "EUR",
+          "debit": "3000",
+          "email": "support@outvoicer.com",
+          "dueDays": 14,
+          "lastInvoice": 200668,
+          "prefix": "Outvoicer-",
+          "bankAccounts": [
+            {
+              "id": 1,
+              "IBAN": "LV94HABA0551056496751",
+              "bank": "SWEDBANK AS",
+              "swift": "HABALV22"
+            }
+          ],
+          "additionalProperty": "anything"
+        }
       },
       "CompanyUpdate": {
         "type": "object",
@@ -2180,7 +2516,7 @@
       },
       "Invoice": {
         "type": "object",
-        "description": "Full sales invoice. The data store is NoSQL, so more fields can be present; these are the main relevant fields.",
+        "description": "Full sales invoice as returned by the API. The data store is NoSQL, so extra fields may be present (see `additionalProperty` in the example).",
         "properties": {
           "id": {
             "type": "string",
@@ -2217,11 +2553,6 @@
             "type": "string",
             "example": "2026-07-14"
           },
-          "client": {
-            "type": "string",
-            "description": "Client id the invoice belongs to",
-            "example": "yescapital"
-          },
           "seller": {
             "$ref": "#/components/schemas/Seller"
           },
@@ -2254,35 +2585,83 @@
           "status": {
             "type": "string",
             "example": "sent"
-          },
-          "forwardedToCostPocket": {
-            "type": "boolean",
-            "nullable": true,
-            "description": "Whether the invoice has been forwarded to the accounting integration"
-          },
-          "domain": {
-            "type": "string",
-            "description": "Outvoicer subdomain the invoice belongs to"
-          },
-          "accounting_software": {
-            "type": "string",
-            "nullable": true
-          },
-          "PDFBase64": {
-            "type": "string",
-            "nullable": true,
-            "description": "Base64-encoded PDF, present when generated/forwarded"
-          },
-          "createdAt": {
-            "type": "string",
-            "nullable": true
-          },
-          "VATAccountable": {
-            "type": "boolean",
-            "nullable": true
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "69f2212bac38fd7df540535a",
+          "nr": "200669",
+          "date": "1782766800000",
+          "due": "1783976400000",
+          "dateFormated": "2026-06-30",
+          "dueFormated": "2026-07-14",
+          "seller": {
+            "name": "CostPocket SIA",
+            "regCode": "40203537286",
+            "taxVAT": true,
+            "VATNumber": "LV40203537286",
+            "address": "Eduarda Smiļģa iela 32 - 19",
+            "zip": "LV-1002",
+            "city": "Rīga",
+            "country": "Latvia",
+            "currency": "EUR",
+            "debit": "3000",
+            "email": "support@outvoicer.com",
+            "dueDays": 14,
+            "lastInvoice": 200668,
+            "prefix": "Outvoicer-",
+            "bankAccounts": [
+              {
+                "id": 1,
+                "IBAN": "LV94HABA0551056496751",
+                "bank": "SWEDBANK AS",
+                "swift": "HABALV22"
+              }
+            ],
+            "additionalProperty": "anything"
+          },
+          "buyer": {
+            "id": "yescapital",
+            "name": "Yes Capital OY",
+            "regCode": "17527906",
+            "taxVAT": true,
+            "VATNumber": "EE101884549",
+            "address": "Roosikrantsi tn 11",
+            "city": "Tallinn",
+            "country": "Estonia",
+            "zip": "10119",
+            "email": "email@email.ee",
+            "refNumber": "599773",
+            "discount": "10",
+            "language": "ee",
+            "additionalProperty": "anything"
+          },
+          "lines": [
+            {
+              "id": "sakuma-menesa-plans",
+              "product": "sakuma-menesa-plans",
+              "name": "Sākuma Mēneša plāns",
+              "VATRate": 21,
+              "unitPrice": "3.63",
+              "unit": "pc",
+              "amount": "3.63",
+              "rounding": "0",
+              "comment": "string",
+              "debit": "3000",
+              "subtotal": "3.63",
+              "VAT": "3.63",
+              "total": "3.63",
+              "additionalProperty": "anything"
+            }
+          ],
+          "currency": "EUR",
+          "subtotal": "3.63",
+          "VAT": "3.63",
+          "total": "3.63",
+          "sent": true,
+          "status": "sent",
+          "additionalProperty": "anything"
+        }
       }
     }
   }
