@@ -702,7 +702,18 @@
                   "items": {
                     "$ref": "#/components/schemas/Product"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "hammer",
+                    "name": "Hammer",
+                    "unit": "pc",
+                    "unitPrice": "3.63",
+                    "debit": "3015",
+                    "VATRate": 21.5,
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -847,7 +858,18 @@
                   "items": {
                     "$ref": "#/components/schemas/Product"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "hammer",
+                    "name": "Hammer",
+                    "unit": "pc",
+                    "unitPrice": "3.63",
+                    "debit": "3015",
+                    "VATRate": 21.5,
+                    "additionalProperty": "anything"
+                  }
+                ]
               }
             }
           },
@@ -1381,11 +1403,13 @@
               "$ref": "#/components/schemas/ProductInput"
             },
             "example": {
-              "unit": "pc",
-              "unitPrice": 0.4,
-              "name": "Hammer",
               "id": "hammer",
-              "debit": "3015"
+              "name": "Hammer",
+              "unit": "pc",
+              "unitPrice": "3.63",
+              "debit": "3015",
+              "VATRate": 21.5,
+              "additionalProperty": "anything"
             }
           }
         }
@@ -1443,6 +1467,15 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/Product"
+            },
+            "example": {
+              "id": "hammer",
+              "name": "Hammer",
+              "unit": "pc",
+              "unitPrice": "3.63",
+              "debit": "3015",
+              "VATRate": 21.5,
+              "additionalProperty": "anything"
             }
           }
         }
@@ -1846,23 +1879,29 @@
           },
           "debit": {
             "type": "string",
-            "description": "Sales (revenue) account in accounting for this product",
+            "description": "Sales revenue account in accounting for this product",
             "example": "3015"
           },
           "VATRate": {
             "type": "number",
-            "description": "Always a JSON number, e.g. 21 or 21.5"
-          },
-          "lockPrice": {
-            "type": "boolean",
-            "description": "When true, mobile app users cannot change the API-set price (one-time initiation setting)"
+            "description": "Always a JSON number, e.g. 21 or 21.5. Overwrites the default VAT rate for this product.",
+            "example": 21.5
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "hammer",
+          "name": "Hammer",
+          "unit": "pc",
+          "unitPrice": "3.63",
+          "debit": "3015",
+          "VATRate": 21.5,
+          "additionalProperty": "anything"
+        }
       },
       "Product": {
         "type": "object",
-        "description": "Full product object as returned by the API",
+        "description": "Full product object as returned by the API. The data store is NoSQL, so extra fields may be present (see `additionalProperty` in the example).",
         "required": ["id", "name"],
         "properties": {
           "id": {
@@ -1884,23 +1923,26 @@
           "debit": {
             "type": "string",
             "nullable": true,
+            "description": "Sales revenue account in accounting for this product",
             "example": "3015"
           },
           "VATRate": {
             "type": "number",
-            "nullable": true
-          },
-          "meritId": {
-            "type": "string",
             "nullable": true,
-            "description": "Id of the product in the connected accounting software"
-          },
-          "lockPrice": {
-            "type": "boolean",
-            "nullable": true
+            "description": "Always a JSON number, e.g. 21 or 21.5. Overwrites the default VAT rate for this product.",
+            "example": 21.5
           }
         },
-        "additionalProperties": true
+        "additionalProperties": true,
+        "example": {
+          "id": "hammer",
+          "name": "Hammer",
+          "unit": "pc",
+          "unitPrice": "3.63",
+          "debit": "3015",
+          "VATRate": 21.5,
+          "additionalProperty": "anything"
+        }
       },
       "LineException": {
         "description": "Explains why a certain VAT rate was chosen for a line. `false` or `null` means the invoice was imported from elsewhere and this system is not used.",
