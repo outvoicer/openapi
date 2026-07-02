@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://{subdomain}.outvoicer.com/api",
+      "url": "https://{subdomain}.outvoicer.com",
       "description": "Customer-specific Outvoicer domain",
       "variables": {
         "subdomain": {
@@ -23,83 +23,141 @@
     }
   ],
   "tags": [
-    { "name": "Auth", "description": "Bearer token management (on app.outvoicer.com)" },
-    { "name": "Test", "description": "Connectivity / token test" },
-    { "name": "Client", "description": "Manage clients (invoice recipients)" },
-    { "name": "Client Integration", "description": "Client endpoints that talk to the connected accounting software. Not all accounting softwares support all endpoints." },
-    { "name": "Product", "description": "Manage products" },
-    { "name": "Product Integration", "description": "Product endpoints that talk to the connected accounting software" },
-    { "name": "Invoice", "description": "Create, print, send and query sales invoices" },
-    { "name": "Invoice Integration", "description": "Forward invoices to the connected accounting software" },
-    { "name": "Company", "description": "Seller company settings" },
-    { "name": "Files", "description": "Invoice PDF and JPG retrieval" }
+    {
+      "name": "Auth",
+      "description": "Bearer token management (on app.outvoicer.com)"
+    },
+    {
+      "name": "Test",
+      "description": "Connectivity / token test"
+    },
+    {
+      "name": "Client",
+      "description": "Manage clients (invoice recipients)"
+    },
+    {
+      "name": "Client Integration",
+      "description": "Client endpoints that talk to the connected accounting software. Not all accounting softwares support all endpoints."
+    },
+    {
+      "name": "Product",
+      "description": "Manage products"
+    },
+    {
+      "name": "Product Integration",
+      "description": "Product endpoints that talk to the connected accounting software"
+    },
+    {
+      "name": "Invoice",
+      "description": "Create, print, send and query sales invoices"
+    },
+    {
+      "name": "Invoice Integration",
+      "description": "Forward invoices to the connected accounting software"
+    },
+    {
+      "name": "Company",
+      "description": "Seller company settings"
+    },
+    {
+      "name": "Files",
+      "description": "Invoice PDF and JPG retrieval"
+    }
   ],
   "paths": {
-    "/user/bearer/view": {
+    "/api/user/bearer/view": {
       "get": {
         "tags": ["Auth"],
         "summary": "View your Bearer token",
         "description": "Every user can have one Bearer token. Called against app.outvoicer.com, not the customer subdomain.",
-        "servers": [{ "url": "https://app.outvoicer.com/api" }],
+        "servers": [
+          {
+            "url": "https://app.outvoicer.com"
+          }
+        ],
         "operationId": "viewBearerToken",
         "responses": {
           "200": {
             "description": "Current Bearer token",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BearerToken" }
+                "schema": {
+                  "$ref": "#/components/schemas/BearerToken"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/user/bearer/generate": {
+    "/api/user/bearer/generate": {
       "post": {
         "tags": ["Auth"],
         "summary": "Generate a new Bearer token",
         "description": "Generates (or regenerates) the user's single Bearer token. Called against app.outvoicer.com.",
-        "servers": [{ "url": "https://app.outvoicer.com/api" }],
+        "servers": [
+          {
+            "url": "https://app.outvoicer.com"
+          }
+        ],
         "operationId": "generateBearerToken",
         "responses": {
           "200": {
             "description": "Newly generated Bearer token",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BearerToken" }
+                "schema": {
+                  "$ref": "#/components/schemas/BearerToken"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/user/bearer/token": {
+    "/api/user/bearer/token": {
       "delete": {
         "tags": ["Auth"],
         "summary": "Delete your Bearer token",
         "description": "Called against app.outvoicer.com.",
-        "servers": [{ "url": "https://app.outvoicer.com/api" }],
+        "servers": [
+          {
+            "url": "https://app.outvoicer.com"
+          }
+        ],
         "operationId": "deleteBearerToken",
         "responses": {
-          "200": { "description": "Token deleted" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "description": "Token deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/test": {
+    "/api/test": {
       "get": {
         "tags": ["Test"],
         "summary": "Test the token / connectivity against a customer subdomain",
         "operationId": "testToken",
         "responses": {
-          "200": { "description": "Token is valid for this subdomain" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "description": "Token is valid for this subdomain"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client": {
+    "/api/client": {
       "get": {
         "tags": ["Client"],
         "summary": "Get all clients",
@@ -109,130 +167,215 @@
             "description": "List of clients",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Client" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       },
       "post": {
         "tags": ["Client"],
         "summary": "Create a client",
         "operationId": "createClient",
-        "requestBody": { "$ref": "#/components/requestBodies/ClientBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ClientBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client/post-or-overwrite": {
+    "/api/client/post-or-overwrite": {
       "post": {
         "tags": ["Client"],
         "summary": "Create a client or overwrite it if it already exists",
         "description": "Recommended in automated workflows: overwrite the client every month, because the e-mail address or company name may have changed. Returns the full updated client (including `client.id`, which is needed for forwarding).",
         "operationId": "postOrOverwriteClient",
-        "requestBody": { "$ref": "#/components/requestBodies/ClientBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ClientBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client/post-forward-and-overwrite": {
+    "/api/client/post-forward-and-overwrite": {
       "post": {
         "tags": ["Client Integration"],
         "summary": "Create/overwrite a client and forward it to the accounting software in one call",
         "description": "Express variant of post-or-overwrite that also forwards the client to the connected accounting software. In highly automated workflows a 2-step approach (post-or-overwrite, then forward) is recommended, because either step can fail independently and separate calls make debugging easier. Returns the full updated client.",
         "operationId": "postForwardAndOverwriteClient",
-        "requestBody": { "$ref": "#/components/requestBodies/ClientBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ClientBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client/{clientId}": {
+    "/api/client/{clientId}": {
       "get": {
         "tags": ["Client"],
         "summary": "Get one client",
         "operationId": "getClient",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       },
       "put": {
         "tags": ["Client"],
         "summary": "Update one client",
         "operationId": "updateClient",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/ClientBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ClientBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       },
       "delete": {
         "tags": ["Client"],
         "summary": "Delete one client",
         "operationId": "deleteClient",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
-          "200": { "description": "Client deleted" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "description": "Client deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/client/{clientId}/{keyname}": {
+    "/api/client/{clientId}/{keyname}": {
       "delete": {
         "tags": ["Client"],
         "summary": "Delete one key from a client",
         "description": "Removes a single field (key) from the client document (the data store is NoSQL).",
         "operationId": "deleteClientKey",
         "parameters": [
-          { "$ref": "#/components/parameters/ClientId" },
+          {
+            "$ref": "#/components/parameters/ClientId"
+          },
           {
             "name": "keyname",
             "in": "path",
             "required": true,
             "description": "Name of the client field to delete, e.g. `finvoice` or `discount`",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/client/{clientId}/channel": {
+    "/api/client/{clientId}/channel": {
       "get": {
         "tags": ["Client"],
         "summary": "Get the client's current e-invoice eligibility / delivery channel",
         "operationId": "getClientChannel",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Current delivery channel information for the client",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ClientDelivery" }
+                "schema": {
+                  "$ref": "#/components/schemas/ClientDelivery"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       },
       "put": {
@@ -240,22 +383,32 @@
         "summary": "Refresh / verify that the client can receive e-invoices",
         "description": "Checks e-invoice registries and updates the client's delivery channel so invoices can be delivered as e-invoices where possible.",
         "operationId": "updateClientChannel",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Updated delivery channel information",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/ClientDelivery" }
+                "schema": {
+                  "$ref": "#/components/schemas/ClientDelivery"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/client/{name}/search": {
+    "/api/client/{name}/search": {
       "get": {
         "tags": ["Client"],
         "summary": "Search clients by name",
@@ -266,7 +419,9 @@
             "in": "path",
             "required": true,
             "description": "Name (or part of a name) to search for",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -274,15 +429,22 @@
             "description": "Matching clients",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Client" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client/{name}/sell": {
+    "/api/client/{name}/sell": {
       "get": {
         "tags": ["Client"],
         "summary": "Get all invoices of a client",
@@ -293,7 +455,9 @@
             "in": "path",
             "required": true,
             "description": "Client identifier / name",
-            "schema": { "type": "string" }
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -301,30 +465,49 @@
             "description": "Invoices of the client",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Invoice" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/client/{clientId}/forward": {
+    "/api/client/{clientId}/forward": {
       "post": {
         "tags": ["Client Integration"],
         "summary": "Forward a client to the accounting software",
         "description": "Sends the client to the connected accounting software so it can be referenced on forwarded sales invoices. Payload is an empty object.",
         "operationId": "forwardClient",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ClientResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ClientResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/client/import/integration": {
+    "/api/client/import/integration": {
       "get": {
         "tags": ["Client Integration"],
         "summary": "Import all customers from the accounting software",
@@ -335,16 +518,25 @@
             "description": "Imported clients",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Client" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/client/view/integration": {
+    "/api/client/view/integration": {
       "get": {
         "tags": ["Client Integration"],
         "summary": "View all clients in the accounting software",
@@ -354,51 +546,86 @@
             "description": "Clients as stored in the accounting software",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/client/{clientId}/view/integration": {
+    "/api/client/{clientId}/view/integration": {
       "get": {
         "tags": ["Client Integration"],
         "summary": "View one client in the accounting software",
         "operationId": "viewClientInIntegration",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Client as stored in the accounting software",
             "content": {
               "application/json": {
-                "schema": { "type": "object", "additionalProperties": true }
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/client/{clientId}/from/integration": {
+    "/api/client/{clientId}/from/integration": {
       "delete": {
         "tags": ["Client Integration"],
         "summary": "Delete a client from the accounting software integration",
         "operationId": "deleteClientFromIntegration",
-        "parameters": [{ "$ref": "#/components/parameters/ClientId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientId"
+          }
+        ],
         "responses": {
-          "200": { "description": "Client deleted from the integration" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "200": {
+            "description": "Client deleted from the integration"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/client/get/balance": {
+    "/api/client/get/balance": {
       "get": {
         "tags": ["Client Integration"],
         "summary": "Get client debt or prepayment (balance)",
@@ -408,16 +635,23 @@
             "description": "Client balance information (debt or prepayment)",
             "content": {
               "application/json": {
-                "schema": { "type": "object", "additionalProperties": true }
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/product": {
+    "/api/product": {
       "get": {
         "tags": ["Product"],
         "summary": "Get all products",
@@ -427,35 +661,60 @@
             "description": "List of products",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Product" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       },
       "post": {
         "tags": ["Product"],
         "summary": "Create a product",
         "operationId": "createProduct",
-        "requestBody": { "$ref": "#/components/requestBodies/ProductBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ProductBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ProductResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/ProductResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/product/{productId}": {
+    "/api/product/{productId}": {
       "get": {
         "tags": ["Product"],
         "summary": "Get one product",
         "operationId": "getProduct",
-        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
         "responses": {
-          "200": { "$ref": "#/components/responses/ProductResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ProductResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       },
       "put": {
@@ -463,43 +722,81 @@
         "summary": "Update one product",
         "description": "Also used for one-time settings such as locking the price so mobile app users cannot change the API-set price: `{ \"lockPrice\": true }`.",
         "operationId": "updateProduct",
-        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/ProductBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ProductBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ProductResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/ProductResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       },
       "delete": {
         "tags": ["Product"],
         "summary": "Delete one product",
         "operationId": "deleteProduct",
-        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
         "responses": {
-          "200": { "description": "Product deleted" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "description": "Product deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/product/{productId}/forward": {
+    "/api/product/{productId}/forward": {
       "post": {
         "tags": ["Product Integration"],
         "summary": "Forward a product to the accounting software",
         "operationId": "forwardProduct",
-        "parameters": [{ "$ref": "#/components/parameters/ProductId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ProductId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/ProductResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "200": {
+            "$ref": "#/components/responses/ProductResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/product/import/integration": {
+    "/api/product/import/integration": {
       "get": {
         "tags": ["Product Integration"],
         "summary": "Import all products from the accounting software",
@@ -509,16 +806,25 @@
             "description": "Imported products",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Product" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/company": {
+    "/api/company": {
       "put": {
         "tags": ["Company"],
         "summary": "Update seller company settings",
@@ -528,8 +834,12 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/CompanyUpdate" },
-              "example": { "prefix": "api" }
+              "schema": {
+                "$ref": "#/components/schemas/CompanyUpdate"
+              },
+              "example": {
+                "prefix": "api"
+              }
             }
           }
         },
@@ -538,16 +848,22 @@
             "description": "Full new current state of the company",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Seller" }
+                "schema": {
+                  "$ref": "#/components/schemas/Seller"
+                }
               }
             }
           },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/sell": {
+    "/api/sell": {
       "get": {
         "tags": ["Invoice"],
         "summary": "Query all invoices",
@@ -557,11 +873,18 @@
             "description": "List of invoices",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Invoice" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       },
       "post": {
@@ -569,151 +892,265 @@
         "summary": "Create an invoice",
         "description": "Saves the invoice data. No invoice number or PDF is generated yet (that happens on first print). Requires that the referenced client and products exist and are already forwarded to the accounting software (when integration forwarding is used later).",
         "operationId": "createInvoice",
-        "requestBody": { "$ref": "#/components/requestBodies/CreateInvoiceBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateInvoiceBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/sell/post-and-print": {
+    "/api/sell/post-and-print": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Create an invoice, assign an invoice number and generate the PDF (+ JPG preview)",
         "operationId": "createAndPrintInvoice",
-        "requestBody": { "$ref": "#/components/requestBodies/CreateInvoiceBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateInvoiceBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/sell/post-and-send": {
+    "/api/sell/post-and-send": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Create an invoice, generate the PDF and send it to the client",
         "description": "Sends as e-invoice if the client can receive one, otherwise emails it. Duplicate-protected.",
         "operationId": "createAndSendInvoice",
-        "requestBody": { "$ref": "#/components/requestBodies/CreateInvoiceBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateInvoiceBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "409": { "$ref": "#/components/responses/Duplicate" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          }
         }
       }
     },
-    "/sell/post-send-and-forward": {
+    "/api/sell/post-send-and-forward": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Create an invoice, generate the PDF, send it to the client and forward it to the accounting software",
         "description": "One-shot convenience endpoint. Requires that the referenced client and products exist and have already been forwarded to the accounting software. Duplicate-protected.",
         "operationId": "createSendAndForwardInvoice",
-        "requestBody": { "$ref": "#/components/requestBodies/CreateInvoiceBody" },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateInvoiceBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "400": { "$ref": "#/components/responses/BadRequest" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "409": { "$ref": "#/components/responses/Duplicate" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          }
         }
       }
     },
-    "/sell/{id}": {
+    "/api/sell/{id}": {
       "get": {
         "tags": ["Invoice"],
         "summary": "View one invoice",
         "description": "The invoice can be addressed by its internal id (e.g. `68b544f233f9e94dcfc24dd3`) at any time, or by its invoice number (e.g. `1234`) once the number has been assigned (numbers are assigned when the PDF is first generated).",
         "operationId": "getInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/sell/{id}/print": {
+    "/api/sell/{id}/print": {
       "get": {
         "tags": ["Invoice"],
         "summary": "Create the invoice PDF and assign an invoice number",
         "description": "The invoice can be printed many times; the invoice number is assigned only on the first print.",
         "operationId": "printInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/sell/{id}/send": {
+    "/api/sell/{id}/send": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Send an invoice to the client",
         "description": "Automatically sends an e-invoice if the client can receive one, otherwise defaults to email. Duplicate-protected: can be triggered only once.",
         "operationId": "sendInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "409": { "$ref": "#/components/responses/Duplicate" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          }
         }
       }
     },
-    "/sell/{id}/email": {
+    "/api/sell/{id}/email": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Send an invoice by email only",
         "description": "Duplicate-protected: can be triggered only once.",
         "operationId": "emailInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "409": { "$ref": "#/components/responses/Duplicate" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          }
         }
       }
     },
-    "/sell/{id}/einvoice": {
+    "/api/sell/{id}/einvoice": {
       "post": {
         "tags": ["Invoice"],
         "summary": "Send an invoice as an e-invoice only",
         "description": "Requires e-invoicing to be enabled for the seller and the client to be able to receive e-invoices. Duplicate-protected: can be triggered only once.",
         "operationId": "einvoiceInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "409": { "$ref": "#/components/responses/Duplicate" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          }
         }
       }
     },
-    "/sell/{id}/forward": {
+    "/api/sell/{id}/forward": {
       "post": {
         "tags": ["Invoice Integration"],
         "summary": "Forward an invoice to the accounting software under sales invoices",
         "description": "Duplicate-protected: can be triggered only once.",
         "operationId": "forwardInvoice",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
-        "requestBody": { "$ref": "#/components/requestBodies/EmptyBody" },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/EmptyBody"
+        },
         "responses": {
-          "200": { "$ref": "#/components/responses/InvoiceResponse" },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" },
-          "409": { "$ref": "#/components/responses/Duplicate" },
-          "501": { "$ref": "#/components/responses/NotSupportedByIntegration" }
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Duplicate"
+          },
+          "501": {
+            "$ref": "#/components/responses/NotSupportedByIntegration"
+          }
         }
       }
     },
-    "/sell/total/{year}/{month}": {
+    "/api/sell/total/{year}/{month}": {
       "get": {
         "tags": ["Invoice"],
         "summary": "Query invoices from a specific month",
@@ -723,13 +1160,21 @@
             "name": "year",
             "in": "path",
             "required": true,
-            "schema": { "type": "integer", "example": 2026 }
+            "schema": {
+              "type": "integer",
+              "example": 2026
+            }
           },
           {
             "name": "month",
             "in": "path",
             "required": true,
-            "schema": { "type": "integer", "minimum": 1, "maximum": 12, "example": 6 }
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12,
+              "example": 6
+            }
           }
         ],
         "responses": {
@@ -737,52 +1182,81 @@
             "description": "Invoices of the given month",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Invoice" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
         }
       }
     },
-    "/jpg/{id}": {
+    "/api/jpg/{id}": {
       "get": {
         "tags": ["Files"],
         "summary": "Get the invoice preview as a JPG",
         "description": "The JPG preview is generated together with the PDF (post-and-print or print).",
         "operationId": "getInvoiceJpg",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "JPG preview of the invoice",
             "content": {
               "image/jpeg": {
-                "schema": { "type": "string", "format": "binary" }
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     },
-    "/pdf/{id}": {
+    "/api/pdf/{id}": {
       "get": {
         "tags": ["Files"],
         "summary": "Download the invoice PDF",
         "operationId": "getInvoicePdf",
-        "parameters": [{ "$ref": "#/components/parameters/InvoiceId" }],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
         "responses": {
           "200": {
             "description": "PDF of the invoice",
             "content": {
               "application/pdf": {
-                "schema": { "type": "string", "format": "binary" }
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           },
-          "401": { "$ref": "#/components/responses/Unauthorized" },
-          "404": { "$ref": "#/components/responses/NotFound" }
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
         }
       }
     }
@@ -801,21 +1275,27 @@
         "in": "path",
         "required": true,
         "description": "Client id, e.g. `yescapital`",
-        "schema": { "type": "string" }
+        "schema": {
+          "type": "string"
+        }
       },
       "ProductId": {
         "name": "productId",
         "in": "path",
         "required": true,
         "description": "Product id, e.g. `hammer`",
-        "schema": { "type": "string" }
+        "schema": {
+          "type": "string"
+        }
       },
       "InvoiceId": {
         "name": "id",
         "in": "path",
         "required": true,
         "description": "Invoice internal id (e.g. `68b544f233f9e94dcfc24dd3`) or invoice number (e.g. `1234`; assigned when the PDF is first generated).",
-        "schema": { "type": "string" }
+        "schema": {
+          "type": "string"
+        }
       }
     },
     "requestBodies": {
@@ -823,7 +1303,10 @@
         "required": true,
         "content": {
           "application/json": {
-            "schema": { "type": "object", "additionalProperties": false },
+            "schema": {
+              "type": "object",
+              "additionalProperties": false
+            },
             "example": {}
           }
         }
@@ -832,7 +1315,9 @@
         "required": true,
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/ClientInput" },
+            "schema": {
+              "$ref": "#/components/schemas/ClientInput"
+            },
             "example": {
               "id": "yescapital",
               "name": "Yes Capital OY",
@@ -855,7 +1340,9 @@
         "required": true,
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/ProductInput" },
+            "schema": {
+              "$ref": "#/components/schemas/ProductInput"
+            },
             "example": {
               "unit": "pc",
               "unitPrice": 0.4,
@@ -870,10 +1357,17 @@
         "required": true,
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/InvoiceCreate" },
+            "schema": {
+              "$ref": "#/components/schemas/InvoiceCreate"
+            },
             "example": {
               "client": "yescapital",
-              "lines": [{ "product": "hammer", "amount": "2" }]
+              "lines": [
+                {
+                  "product": "hammer",
+                  "amount": "2"
+                }
+              ]
             }
           }
         }
@@ -884,7 +1378,9 @@
         "description": "Full new current state of the client",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Client" }
+            "schema": {
+              "$ref": "#/components/schemas/Client"
+            }
           }
         }
       },
@@ -892,7 +1388,9 @@
         "description": "Full new current state of the product",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Product" }
+            "schema": {
+              "$ref": "#/components/schemas/Product"
+            }
           }
         }
       },
@@ -900,7 +1398,9 @@
         "description": "Full new current state of the invoice",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Invoice" }
+            "schema": {
+              "$ref": "#/components/schemas/Invoice"
+            }
           }
         }
       },
@@ -908,7 +1408,9 @@
         "description": "Invalid payload (e.g. email fails validation, country is not a real country name, referenced client/product does not exist)",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Error" }
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       },
@@ -916,7 +1418,9 @@
         "description": "Missing or invalid Bearer token, or the token has no access to this subdomain",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Error" }
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       },
@@ -924,7 +1428,9 @@
         "description": "Resource not found",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Error" }
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       },
@@ -932,7 +1438,9 @@
         "description": "Duplicate prevented — this consequence-bearing action (send / forward) has already been triggered for this invoice",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Error" }
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       },
@@ -940,7 +1448,9 @@
         "description": "The connected accounting software does not support this integration endpoint",
         "content": {
           "application/json": {
-            "schema": { "$ref": "#/components/schemas/Error" }
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       }
@@ -949,23 +1459,35 @@
       "NumberOrNumericString": {
         "description": "Numeric value that may arrive as a JSON number or as a numeric string, e.g. 3, 3.63, \"3.63\" or 13.21488. The most normalised form is \"3.00\", but several workflows (including import-only flows that don't recalculate) are supported.",
         "oneOf": [
-          { "type": "number" },
-          { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?$" }
+          {
+            "type": "number"
+          },
+          {
+            "type": "string",
+            "pattern": "^-?\\d+(\\.\\d+)?$"
+          }
         ],
         "example": "3.63"
       },
       "BearerToken": {
         "type": "object",
         "properties": {
-          "token": { "type": "string", "description": "The Bearer token to use in the Authorization header" }
+          "token": {
+            "type": "string",
+            "description": "The Bearer token to use in the Authorization header"
+          }
         },
         "additionalProperties": true
       },
       "Error": {
         "type": "object",
         "properties": {
-          "error": { "type": "string" },
-          "message": { "type": "string" }
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
         },
         "additionalProperties": true
       },
@@ -978,9 +1500,16 @@
         "type": "object",
         "description": "Finnish e-invoice (Finvoice) address of the client",
         "properties": {
-          "address": { "type": "string" },
-          "service_identifier": { "type": "string" },
-          "type": { "type": "string", "nullable": true }
+          "address": {
+            "type": "string"
+          },
+          "service_identifier": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
         },
         "required": ["address", "service_identifier"]
       },
@@ -988,8 +1517,12 @@
         "type": "object",
         "description": "Estonian e-invoice channel address of the client",
         "properties": {
-          "channelAddress": { "type": "string" },
-          "channelId": { "type": "string" }
+          "channelAddress": {
+            "type": "string"
+          },
+          "channelId": {
+            "type": "string"
+          }
         },
         "required": ["channelAddress", "channelId"]
       },
@@ -997,9 +1530,17 @@
         "type": "object",
         "description": "Client's current invoice delivery channel / e-invoice eligibility",
         "properties": {
-          "email": { "type": "string", "format": "email", "nullable": true },
-          "delivery": { "$ref": "#/components/schemas/DeliveryType" },
-          "finvoice": { "$ref": "#/components/schemas/Finvoice" }
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryType"
+          },
+          "finvoice": {
+            "$ref": "#/components/schemas/Finvoice"
+          }
         }
       },
       "ClientInput": {
@@ -1007,18 +1548,44 @@
         "description": "Client payload for POST /client, PUT /client/{clientId}, POST /client/post-or-overwrite and POST /client/post-forward-and-overwrite",
         "required": ["id", "name"],
         "properties": {
-          "id": { "type": "string", "example": "yescapital" },
-          "name": { "type": "string", "example": "Yes Capital OY" },
+          "id": {
+            "type": "string",
+            "example": "yescapital"
+          },
+          "name": {
+            "type": "string",
+            "example": "Yes Capital OY"
+          },
           "regCode": {
-            "oneOf": [{ "type": "string" }, { "type": "number" }],
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ],
             "example": "12710066"
           },
-          "address": { "type": "string", "example": "Virulainen 4" },
+          "address": {
+            "type": "string",
+            "example": "Virulainen 4"
+          },
           "zip": {
-            "oneOf": [{ "type": "string" }, { "type": "integer" }],
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
             "example": "10140"
           },
-          "city": { "type": "string", "example": "Helsinki" },
+          "city": {
+            "type": "string",
+            "example": "Helsinki"
+          },
           "email": {
             "type": "string",
             "format": "email",
@@ -1030,9 +1597,18 @@
             "description": "Must be a real country name for VAT to validate",
             "example": "Finland"
           },
-          "taxVAT": { "type": "boolean", "example": true },
-          "VATNumber": { "type": "string", "example": "FI12345679" },
-          "refNumber": { "type": "string", "example": "130239" },
+          "taxVAT": {
+            "type": "boolean",
+            "example": true
+          },
+          "VATNumber": {
+            "type": "string",
+            "example": "FI12345679"
+          },
+          "refNumber": {
+            "type": "string",
+            "example": "130239"
+          },
           "discount": {
             "type": "number",
             "description": "Customer discount as a percentage",
@@ -1051,54 +1627,147 @@
         "description": "Full client object as returned by the API. The data store is NoSQL, so extra fields may be present, and some legacy fields may have mixed types.",
         "required": ["id", "name"],
         "properties": {
-          "id": { "type": "string", "example": "yescapital" },
-          "name": { "type": "string", "example": "Yes Capital OY" },
+          "id": {
+            "type": "string",
+            "example": "yescapital"
+          },
+          "name": {
+            "type": "string",
+            "example": "Yes Capital OY"
+          },
           "regCode": {
             "nullable": true,
-            "oneOf": [{ "type": "string" }, { "type": "number" }]
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              }
+            ]
           },
           "taxVAT": {
             "description": "Legacy data may contain boolean, string (\"true\"/\"false\") or number (0/1); semantically a boolean.",
             "nullable": true,
-            "oneOf": [{ "type": "boolean" }, { "type": "string" }, { "type": "integer" }]
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           },
-          "VATAccountable": { "type": "boolean", "nullable": true },
+          "VATAccountable": {
+            "type": "boolean",
+            "nullable": true
+          },
           "VATNumber": {
             "nullable": true,
-            "oneOf": [{ "type": "string" }, { "type": "integer" }, { "type": "boolean" }]
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
           },
-          "address": { "type": "string", "nullable": true },
-          "city": { "type": "string", "nullable": true },
-          "country": { "type": "string", "nullable": true },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
           "zip": {
             "nullable": true,
-            "oneOf": [{ "type": "string" }, { "type": "integer" }]
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           },
-          "email": { "type": "string", "format": "email", "nullable": true },
-          "refNumber": { "type": "string", "nullable": true },
-          "discount": { "type": "number", "nullable": true, "description": "Customer discount as a percentage" },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "refNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "discount": {
+            "type": "number",
+            "nullable": true,
+            "description": "Customer discount as a percentage"
+          },
           "coupon": {
             "nullable": true,
-            "oneOf": [{ "type": "string" }, { "type": "integer" }, { "type": "boolean" }]
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
           },
           "planId": {
             "nullable": true,
-            "oneOf": [{ "type": "string" }, { "type": "integer" }]
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           },
-          "language": { "type": "string", "nullable": true },
-          "meritId": { "type": "string", "nullable": true, "description": "Id of the client in the connected accounting software (e.g. Merit)" },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "meritId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Id of the client in the connected accounting software (e.g. Merit)"
+          },
           "delivery": {
             "type": "string",
             "nullable": true,
             "description": "Current delivery channel (see DeliveryType)"
           },
-          "einvoiceAddress": { "$ref": "#/components/schemas/EstonianEinvoiceAddress" },
+          "einvoiceAddress": {
+            "$ref": "#/components/schemas/EstonianEinvoiceAddress"
+          },
           "finvoice": {
             "nullable": true,
             "description": "Finvoice address; legacy data may contain `false` meaning 'not available'",
             "oneOf": [
-              { "$ref": "#/components/schemas/Finvoice" },
-              { "type": "boolean" }
+              {
+                "$ref": "#/components/schemas/Finvoice"
+              },
+              {
+                "type": "boolean"
+              }
             ]
           }
         },
@@ -1109,10 +1778,21 @@
         "description": "Product payload for POST /product and PUT /product/{productId}",
         "required": ["id", "name", "unitPrice"],
         "properties": {
-          "id": { "type": "string", "example": "hammer" },
-          "name": { "type": "string", "example": "Hammer" },
-          "unit": { "type": "string", "example": "pc" },
-          "unitPrice": { "$ref": "#/components/schemas/NumberOrNumericString" },
+          "id": {
+            "type": "string",
+            "example": "hammer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Hammer"
+          },
+          "unit": {
+            "type": "string",
+            "example": "pc"
+          },
+          "unitPrice": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
           "debit": {
             "type": "string",
             "description": "Sales (revenue) account in accounting for this product",
@@ -1134,14 +1814,40 @@
         "description": "Full product object as returned by the API",
         "required": ["id", "name"],
         "properties": {
-          "id": { "type": "string", "example": "hammer" },
-          "name": { "type": "string", "example": "Hammer" },
-          "unit": { "type": "string", "nullable": true, "example": "pc" },
-          "unitPrice": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "debit": { "type": "string", "nullable": true, "example": "3015" },
-          "VATRate": { "type": "number", "nullable": true },
-          "meritId": { "type": "string", "nullable": true, "description": "Id of the product in the connected accounting software" },
-          "lockPrice": { "type": "boolean", "nullable": true }
+          "id": {
+            "type": "string",
+            "example": "hammer"
+          },
+          "name": {
+            "type": "string",
+            "example": "Hammer"
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true,
+            "example": "pc"
+          },
+          "unitPrice": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "debit": {
+            "type": "string",
+            "nullable": true,
+            "example": "3015"
+          },
+          "VATRate": {
+            "type": "number",
+            "nullable": true
+          },
+          "meritId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Id of the product in the connected accounting software"
+          },
+          "lockPrice": {
+            "type": "boolean",
+            "nullable": true
+          }
         },
         "additionalProperties": true
       },
@@ -1164,7 +1870,9 @@
               "defaultApplied"
             ]
           },
-          { "type": "boolean" }
+          {
+            "type": "boolean"
+          }
         ]
       },
       "InvoiceLineInput": {
@@ -1172,11 +1880,22 @@
         "description": "Invoice line when creating an invoice. `product` must reference an existing product id.",
         "required": ["product", "amount"],
         "properties": {
-          "product": { "type": "string", "example": "hammer" },
-          "amount": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "unitPrice": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "comment": { "type": "string" },
-          "exception": { "$ref": "#/components/schemas/LineException" }
+          "product": {
+            "type": "string",
+            "example": "hammer"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "unitPrice": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "exception": {
+            "$ref": "#/components/schemas/LineException"
+          }
         },
         "additionalProperties": true
       },
@@ -1184,20 +1903,42 @@
         "type": "object",
         "description": "Invoice line as returned by the API",
         "properties": {
-          "id": { "type": "string", "example": "sakuma-menesa-plans" },
-          "product": { "type": "string", "example": "sakuma-menesa-plans" },
-          "name": { "type": "string", "example": "Sākuma Mēneša plāns" },
+          "id": {
+            "type": "string",
+            "example": "sakuma-menesa-plans"
+          },
+          "product": {
+            "type": "string",
+            "example": "sakuma-menesa-plans"
+          },
+          "name": {
+            "type": "string",
+            "example": "Sākuma Mēneša plāns"
+          },
           "VATRate": {
             "type": "number",
             "description": "Always a JSON number, e.g. 21 or 21.5",
             "example": 21
           },
-          "exception": { "$ref": "#/components/schemas/LineException" },
-          "unitPrice": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "unit": { "type": "string", "example": "pc" },
-          "amount": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "rounding": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "comment": { "type": "string" },
+          "exception": {
+            "$ref": "#/components/schemas/LineException"
+          },
+          "unitPrice": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "unit": {
+            "type": "string",
+            "example": "pc"
+          },
+          "amount": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "rounding": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "comment": {
+            "type": "string"
+          },
           "debit": {
             "type": "string",
             "description": "Sales revenue account",
@@ -1207,38 +1948,97 @@
             "type": "string",
             "description": "Set to the buyer country when exception = MOSS"
           },
-          "subtotal": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "VAT": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "total": { "$ref": "#/components/schemas/NumberOrNumericString" }
+          "subtotal": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "VAT": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "total": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          }
         },
         "additionalProperties": true
       },
       "BankAccount": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer", "example": 1 },
-          "IBAN": { "type": "string", "example": "LV94HABA0551056496751" },
-          "bank": { "type": "string", "example": "SWEDBANK AS" },
-          "swift": { "type": "string", "example": "HABALV22" }
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "IBAN": {
+            "type": "string",
+            "example": "LV94HABA0551056496751"
+          },
+          "bank": {
+            "type": "string",
+            "example": "SWEDBANK AS"
+          },
+          "swift": {
+            "type": "string",
+            "example": "HABALV22"
+          }
         }
       },
       "Seller": {
         "type": "object",
         "description": "Seller (your company) block embedded in an invoice; also the shape returned by PUT /company",
         "properties": {
-          "name": { "type": "string", "example": "CostPocket SIA" },
-          "regCode": { "type": "string", "example": "40203537286" },
-          "taxVAT": { "type": "boolean", "example": true },
-          "VATNumber": { "type": "string", "example": "LV40203537286" },
-          "address": { "type": "string", "example": "Eduarda Smiļģa iela 32 - 19" },
-          "zip": { "type": "string", "example": "LV-1002" },
-          "city": { "type": "string", "example": "Rīga" },
-          "country": { "type": "string", "example": "Latvia" },
-          "currency": { "type": "string", "example": "EUR" },
-          "debit": { "type": "string", "description": "Default sales account", "example": "3000" },
-          "email": { "type": "string", "format": "email", "example": "support@outvoicer.com" },
-          "dueDays": { "type": "integer", "example": 14 },
-          "lastInvoice": { "type": "integer", "example": 200668 },
+          "name": {
+            "type": "string",
+            "example": "CostPocket SIA"
+          },
+          "regCode": {
+            "type": "string",
+            "example": "40203537286"
+          },
+          "taxVAT": {
+            "type": "boolean",
+            "example": true
+          },
+          "VATNumber": {
+            "type": "string",
+            "example": "LV40203537286"
+          },
+          "address": {
+            "type": "string",
+            "example": "Eduarda Smiļģa iela 32 - 19"
+          },
+          "zip": {
+            "type": "string",
+            "example": "LV-1002"
+          },
+          "city": {
+            "type": "string",
+            "example": "Rīga"
+          },
+          "country": {
+            "type": "string",
+            "example": "Latvia"
+          },
+          "currency": {
+            "type": "string",
+            "example": "EUR"
+          },
+          "debit": {
+            "type": "string",
+            "description": "Default sales account",
+            "example": "3000"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "support@outvoicer.com"
+          },
+          "dueDays": {
+            "type": "integer",
+            "example": 14
+          },
+          "lastInvoice": {
+            "type": "integer",
+            "example": 200668
+          },
           "prefix": {
             "type": "string",
             "description": "Invoice number prefix; useful to avoid duplicate number clashes in the accounting software",
@@ -1246,7 +2046,9 @@
           },
           "bankAccounts": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/BankAccount" }
+            "items": {
+              "$ref": "#/components/schemas/BankAccount"
+            }
           }
         },
         "additionalProperties": true
@@ -1276,7 +2078,9 @@
           "lines": {
             "type": "array",
             "minItems": 1,
-            "items": { "$ref": "#/components/schemas/InvoiceLineInput" }
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLineInput"
+            }
           }
         },
         "additionalProperties": true
@@ -1292,7 +2096,14 @@
           },
           "nr": {
             "description": "Invoice number; assigned when the PDF is first generated. May be returned as a string or a number.",
-            "oneOf": [{ "type": "string" }, { "type": "integer" }],
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
             "example": "200669"
           },
           "date": {
@@ -1305,39 +2116,78 @@
             "description": "Due date as a Unix timestamp in milliseconds (string)",
             "example": "1783976400000"
           },
-          "dateFormated": { "type": "string", "example": "2026-06-30" },
-          "dueFormated": { "type": "string", "example": "2026-07-14" },
+          "dateFormated": {
+            "type": "string",
+            "example": "2026-06-30"
+          },
+          "dueFormated": {
+            "type": "string",
+            "example": "2026-07-14"
+          },
           "client": {
             "type": "string",
             "description": "Client id the invoice belongs to",
             "example": "yescapital"
           },
-          "seller": { "$ref": "#/components/schemas/Seller" },
-          "buyer": { "$ref": "#/components/schemas/Client" },
+          "seller": {
+            "$ref": "#/components/schemas/Seller"
+          },
+          "buyer": {
+            "$ref": "#/components/schemas/Client"
+          },
           "lines": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/InvoiceLine" }
+            "items": {
+              "$ref": "#/components/schemas/InvoiceLine"
+            }
           },
-          "currency": { "type": "string", "example": "EUR" },
-          "subtotal": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "VAT": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "total": { "$ref": "#/components/schemas/NumberOrNumericString" },
-          "sent": { "type": "boolean", "example": true },
-          "status": { "type": "string", "example": "sent" },
+          "currency": {
+            "type": "string",
+            "example": "EUR"
+          },
+          "subtotal": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "VAT": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "total": {
+            "$ref": "#/components/schemas/NumberOrNumericString"
+          },
+          "sent": {
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "type": "string",
+            "example": "sent"
+          },
           "forwardedToCostPocket": {
             "type": "boolean",
             "nullable": true,
             "description": "Whether the invoice has been forwarded to the accounting integration"
           },
-          "domain": { "type": "string", "description": "Outvoicer subdomain the invoice belongs to" },
-          "accounting_software": { "type": "string", "nullable": true },
+          "domain": {
+            "type": "string",
+            "description": "Outvoicer subdomain the invoice belongs to"
+          },
+          "accounting_software": {
+            "type": "string",
+            "nullable": true
+          },
           "PDFBase64": {
             "type": "string",
             "nullable": true,
             "description": "Base64-encoded PDF, present when generated/forwarded"
           },
-          "createdAt": { "type": "string", "nullable": true },
-          "VATAccountable": { "type": "boolean", "nullable": true }
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "VATAccountable": {
+            "type": "boolean",
+            "nullable": true
+          }
         },
         "additionalProperties": true
       }
