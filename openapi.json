@@ -67,7 +67,9 @@
   "paths": {
     "/api/user/bearer/view": {
       "get": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "View your Bearer token",
         "description": "Every user can have one Bearer token. Called against app.outvoicer.com, not the customer subdomain.",
         "servers": [
@@ -95,7 +97,9 @@
     },
     "/api/user/bearer/generate": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Generate a new Bearer token",
         "description": "Generates (or regenerates) the user's single Bearer token. Called against app.outvoicer.com.",
         "servers": [
@@ -123,7 +127,9 @@
     },
     "/api/user/bearer/token": {
       "delete": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Delete your Bearer token",
         "description": "Called against app.outvoicer.com.",
         "servers": [
@@ -144,7 +150,9 @@
     },
     "/api/test": {
       "get": {
-        "tags": ["Test"],
+        "tags": [
+          "Test"
+        ],
         "summary": "Test the token / connectivity against a customer subdomain",
         "operationId": "testToken",
         "responses": {
@@ -159,7 +167,9 @@
     },
     "/api/client": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Get all clients",
         "operationId": "getClients",
         "responses": {
@@ -200,7 +210,9 @@
         }
       },
       "post": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Create a client",
         "operationId": "createClient",
         "requestBody": {
@@ -221,7 +233,9 @@
     },
     "/api/client/post-or-overwrite": {
       "post": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Create a client or overwrite it if it already exists",
         "description": "Recommended in automated workflows: overwrite the client every month, because the e-mail address or company name may have changed. Returns the full updated client (including `client.id`, which is needed for forwarding).",
         "operationId": "postOrOverwriteClient",
@@ -243,7 +257,9 @@
     },
     "/api/client/post-forward-and-overwrite": {
       "post": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "Create/overwrite a client and forward it to the accounting software in one call",
         "description": "Express variant of post-or-overwrite that also forwards the client to the connected accounting software. In highly automated workflows a 2-step approach (post-or-overwrite, then forward) is recommended, because either step can fail independently and separate calls make debugging easier. Returns the full updated client.",
         "operationId": "postForwardAndOverwriteClient",
@@ -265,7 +281,9 @@
     },
     "/api/client/{clientId}": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Get one client",
         "operationId": "getClient",
         "parameters": [
@@ -286,7 +304,9 @@
         }
       },
       "put": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Update one client",
         "operationId": "updateClient",
         "parameters": [
@@ -313,7 +333,9 @@
         }
       },
       "delete": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Delete one client",
         "operationId": "deleteClient",
         "parameters": [
@@ -336,7 +358,9 @@
     },
     "/api/client/{clientId}/{keyname}": {
       "delete": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Delete one key from a client",
         "description": "Removes a single field (key) from the client document (the data store is NoSQL).",
         "operationId": "deleteClientKey",
@@ -369,7 +393,9 @@
     },
     "/api/client/{clientId}/channel": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Get the client's current e-invoice eligibility / delivery channel",
         "operationId": "getClientChannel",
         "parameters": [
@@ -397,7 +423,9 @@
         }
       },
       "put": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Refresh / verify that the client can receive e-invoices",
         "description": "Checks e-invoice registries and updates the client's delivery channel so invoices can be delivered as e-invoices where possible.",
         "operationId": "updateClientChannel",
@@ -428,7 +456,9 @@
     },
     "/api/client/{name}/search": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Search clients by name",
         "operationId": "searchClients",
         "parameters": [
@@ -482,7 +512,9 @@
     },
     "/api/client/{name}/sell": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Get all invoices of a client",
         "operationId": "getClientInvoices",
         "parameters": [
@@ -594,7 +626,9 @@
     },
     "/api/client/{clientId}/forward": {
       "post": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "Forward a client to the accounting software",
         "description": "Sends the client to the connected accounting software so it can be referenced on forwarded sales invoices. Payload is an empty object.",
         "operationId": "forwardClient",
@@ -621,7 +655,9 @@
     },
     "/api/client/import/integration": {
       "get": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "Import all customers from the accounting software",
         "description": "Not all accounting softwares have all integration endpoints available.",
         "operationId": "importClientsFromIntegration",
@@ -650,7 +686,9 @@
     },
     "/api/client/view/integration": {
       "get": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "View all clients in the accounting software",
         "operationId": "viewClientsInIntegration",
         "responses": {
@@ -679,7 +717,9 @@
     },
     "/api/client/{clientId}/view/integration": {
       "get": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "View one client in the accounting software",
         "operationId": "viewClientInIntegration",
         "parameters": [
@@ -713,7 +753,9 @@
     },
     "/api/client/{clientId}/from/integration": {
       "delete": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "Delete a client from the accounting software integration",
         "operationId": "deleteClientFromIntegration",
         "parameters": [
@@ -739,7 +781,9 @@
     },
     "/api/client/get/balance": {
       "get": {
-        "tags": ["Client Integration"],
+        "tags": [
+          "Client Integration"
+        ],
         "summary": "Get client debt or prepayment (balance)",
         "operationId": "getClientBalance",
         "responses": {
@@ -765,7 +809,9 @@
     },
     "/api/product": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Get all products",
         "operationId": "getProducts",
         "responses": {
@@ -799,7 +845,9 @@
         }
       },
       "post": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Create a product",
         "operationId": "createProduct",
         "requestBody": {
@@ -820,7 +868,9 @@
     },
     "/api/product/{productId}": {
       "get": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Get one product",
         "operationId": "getProduct",
         "parameters": [
@@ -841,7 +891,9 @@
         }
       },
       "put": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Update one product",
         "description": "Also used for one-time settings such as locking the price so mobile app users cannot change the API-set price: `{ \"lockPrice\": true }`.",
         "operationId": "updateProduct",
@@ -869,7 +921,9 @@
         }
       },
       "delete": {
-        "tags": ["Product"],
+        "tags": [
+          "Product"
+        ],
         "summary": "Delete one product",
         "operationId": "deleteProduct",
         "parameters": [
@@ -892,7 +946,9 @@
     },
     "/api/product/{productId}/forward": {
       "post": {
-        "tags": ["Product Integration"],
+        "tags": [
+          "Product Integration"
+        ],
         "summary": "Forward a product to the accounting software",
         "operationId": "forwardProduct",
         "parameters": [
@@ -921,7 +977,9 @@
     },
     "/api/product/import/integration": {
       "get": {
-        "tags": ["Product Integration"],
+        "tags": [
+          "Product Integration"
+        ],
         "summary": "Import all products from the accounting software",
         "operationId": "importProductsFromIntegration",
         "responses": {
@@ -960,7 +1018,9 @@
     },
     "/api/company": {
       "get": {
-        "tags": ["Company"],
+        "tags": [
+          "Company"
+        ],
         "summary": "Get seller company settings",
         "operationId": "getCompany",
         "responses": {
@@ -1005,7 +1065,9 @@
         }
       },
       "post": {
-        "tags": ["Company"],
+        "tags": [
+          "Company"
+        ],
         "summary": "Create / set seller company settings",
         "operationId": "createCompany",
         "requestBody": {
@@ -1088,7 +1150,9 @@
         }
       },
       "put": {
-        "tags": ["Company"],
+        "tags": [
+          "Company"
+        ],
         "summary": "Update seller company settings",
         "description": "Partial update — send only the fields you want to change. Example: set an invoice number prefix to avoid duplicate invoice numbers in the accounting software: { \"prefix\": \"api\" }.",
         "operationId": "updateCompany",
@@ -1152,7 +1216,9 @@
     },
     "/api/sell": {
       "get": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Query all invoices",
         "operationId": "getInvoices",
         "responses": {
@@ -1251,7 +1317,9 @@
         }
       },
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Create an invoice",
         "description": "Saves the invoice data. No invoice number or PDF is generated yet (that happens on first print). Requires that the referenced client and products exist and are already forwarded to the accounting software (when integration forwarding is used later).",
         "operationId": "createInvoice",
@@ -1273,7 +1341,9 @@
     },
     "/api/sell/post-and-print": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Create an invoice, assign an invoice number and generate the PDF (+ JPG preview)",
         "operationId": "createAndPrintInvoice",
         "requestBody": {
@@ -1294,7 +1364,9 @@
     },
     "/api/sell/post-and-send": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Create an invoice, generate the PDF and send it to the client",
         "description": "Sends as e-invoice if the client can receive one, otherwise emails it. Duplicate-protected.",
         "operationId": "createAndSendInvoice",
@@ -1319,7 +1391,9 @@
     },
     "/api/sell/post-send-and-forward": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Create an invoice, generate the PDF, send it to the client and forward it to the accounting software",
         "description": "One-shot convenience endpoint. Requires that the referenced client and products exist and have already been forwarded to the accounting software. Duplicate-protected.",
         "operationId": "createSendAndForwardInvoice",
@@ -1344,7 +1418,9 @@
     },
     "/api/sell/{id}": {
       "get": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "View one invoice",
         "description": "The invoice can be addressed by its internal id (e.g. `68b544f233f9e94dcfc24dd3`) at any time, or by its invoice number (e.g. `1234`) once the number has been assigned (numbers are assigned when the PDF is first generated).",
         "operationId": "getInvoice",
@@ -1368,7 +1444,9 @@
     },
     "/api/sell/{id}/print": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Create the invoice PDF and assign an invoice number",
         "description": "The invoice can be printed many times; the invoice number is assigned only on the first print.",
         "operationId": "printInvoice",
@@ -1395,7 +1473,9 @@
     },
     "/api/sell/{id}/send": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Send an invoice to the client",
         "description": "Automatically sends an e-invoice if the client can receive one, otherwise defaults to email. Duplicate-protected: can be triggered only once.",
         "operationId": "sendInvoice",
@@ -1425,7 +1505,9 @@
     },
     "/api/sell/{id}/email": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Send an invoice by email only",
         "description": "Duplicate-protected: can be triggered only once.",
         "operationId": "emailInvoice",
@@ -1455,7 +1537,9 @@
     },
     "/api/sell/{id}/einvoice": {
       "post": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Send an invoice as an e-invoice only",
         "description": "Requires e-invoicing to be enabled for the seller and the client to be able to receive e-invoices. Duplicate-protected: can be triggered only once.",
         "operationId": "einvoiceInvoice",
@@ -1485,7 +1569,9 @@
     },
     "/api/sell/{id}/forward": {
       "post": {
-        "tags": ["Invoice Integration"],
+        "tags": [
+          "Invoice Integration"
+        ],
         "summary": "Forward an invoice to the accounting software under sales invoices",
         "description": "Duplicate-protected: can be triggered only once.",
         "operationId": "forwardInvoice",
@@ -1516,9 +1602,89 @@
         }
       }
     },
+    "/api/sell/{id}/attachments": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "List attachments of an invoice",
+        "description": "Returns the list of files attached to the invoice.",
+        "operationId": "listInvoiceAttachments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AttachmentListResponse"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Upload an attachment to an invoice",
+        "description": "Uploads one file as `multipart/form-data` in the `attachment` field. Allowed file types: `csv`, `pdf`, `png`, `jpg`, `jpeg`, `xlsx`, `ods`.",
+        "operationId": "uploadInvoiceAttachment",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/InvoiceId"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "attachment"
+                ],
+                "properties": {
+                  "attachment": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File to attach. Allowed extensions: csv, pdf, png, jpg, jpeg, xlsx, ods."
+                  }
+                }
+              },
+              "encoding": {
+                "attachment": {
+                  "contentType": "text/csv, application/pdf, image/png, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.oasis.opendocument.spreadsheet"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/AttachmentListResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
     "/api/sell/total/{year}/{month}": {
       "get": {
-        "tags": ["Invoice"],
+        "tags": [
+          "Invoice"
+        ],
         "summary": "Query invoices from a specific month",
         "operationId": "getInvoicesByMonth",
         "parameters": [
@@ -1641,7 +1807,9 @@
     },
     "/api/jpg/{id}": {
       "get": {
-        "tags": ["Files"],
+        "tags": [
+          "Files"
+        ],
         "summary": "Get the invoice preview as a JPG",
         "description": "The JPG preview is generated together with the PDF (post-and-print or print).",
         "operationId": "getInvoiceJpg",
@@ -1673,7 +1841,9 @@
     },
     "/api/pdf/{id}": {
       "get": {
-        "tags": ["Files"],
+        "tags": [
+          "Files"
+        ],
         "summary": "Download the invoice PDF",
         "operationId": "getInvoicePdf",
         "parameters": [
@@ -1704,7 +1874,9 @@
     },
     "/api/product/view/integration": {
       "get": {
-        "tags": ["Product Integration"],
+        "tags": [
+          "Product Integration"
+        ],
         "summary": "View all products in the accounting software",
         "description": "Not all accounting softwares have all integration endpoints available.",
         "operationId": "viewProductsInIntegration",
@@ -1734,7 +1906,9 @@
     },
     "/api/product/{productId}/view/integration": {
       "get": {
-        "tags": ["Product Integration"],
+        "tags": [
+          "Product Integration"
+        ],
         "summary": "View one product in the accounting software",
         "operationId": "viewProductInIntegration",
         "parameters": [
@@ -1768,7 +1942,9 @@
     },
     "/api/product/{productId}/from/integration": {
       "delete": {
-        "tags": ["Product Integration"],
+        "tags": [
+          "Product Integration"
+        ],
         "summary": "Delete product from the accounting software integration",
         "operationId": "deleteProductFromIntegration",
         "parameters": [
@@ -1794,7 +1970,9 @@
     },
     "/api/sell/view/integration": {
       "get": {
-        "tags": ["Invoice Integration"],
+        "tags": [
+          "Invoice Integration"
+        ],
         "summary": "View all invoices in the accounting software",
         "description": "Not all accounting softwares have all integration endpoints available.",
         "operationId": "viewInvoicesInIntegration",
@@ -1824,7 +2002,9 @@
     },
     "/api/sell/{id}/view/integration": {
       "get": {
-        "tags": ["Invoice Integration"],
+        "tags": [
+          "Invoice Integration"
+        ],
         "summary": "View one invoice in the accounting software",
         "operationId": "viewInvoiceInIntegration",
         "parameters": [
@@ -1858,7 +2038,9 @@
     },
     "/api/sell/{id}/from/integration": {
       "delete": {
-        "tags": ["Invoice Integration"],
+        "tags": [
+          "Invoice Integration"
+        ],
         "summary": "Delete invoice from the accounting software integration",
         "operationId": "deleteInvoiceFromIntegration",
         "parameters": [
@@ -1884,7 +2066,9 @@
     },
     "/api/client/{clientId}/vies": {
       "get": {
-        "tags": ["Client"],
+        "tags": [
+          "Client"
+        ],
         "summary": "Validate client VAT number (VIES)",
         "description": "Validates the client's VAT number against the EU VIES (VAT Information Exchange System) service.",
         "operationId": "validateClientVat",
@@ -2208,6 +2392,25 @@
             }
           }
         }
+      },
+      "AttachmentListResponse": {
+        "description": "Current list of attachments on the invoice",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Attachment"
+              }
+            },
+            "example": [
+              {
+                "attachment": "image.jpg",
+                "contentType": "image/jpg"
+              }
+            ]
+          }
+        }
       }
     },
     "schemas": {
@@ -2249,7 +2452,11 @@
       "DeliveryType": {
         "type": "string",
         "description": "How the invoice is delivered to the client. Unknown values default to Email.",
-        "enum": ["Email", "Einvoice", "EinvoiceBank"]
+        "enum": [
+          "Email",
+          "Einvoice",
+          "EinvoiceBank"
+        ]
       },
       "Finvoice": {
         "type": "object",
@@ -2266,7 +2473,10 @@
             "nullable": true
           }
         },
-        "required": ["address", "service_identifier"]
+        "required": [
+          "address",
+          "service_identifier"
+        ]
       },
       "EstonianEinvoiceAddress": {
         "type": "object",
@@ -2279,7 +2489,10 @@
             "type": "string"
           }
         },
-        "required": ["channelAddress", "channelId"]
+        "required": [
+          "channelAddress",
+          "channelId"
+        ]
       },
       "ClientDelivery": {
         "type": "object",
@@ -2301,7 +2514,10 @@
       "ClientInput": {
         "type": "object",
         "description": "Client payload for POST /client, PUT /client/{clientId}, POST /client/post-or-overwrite and POST /client/post-forward-and-overwrite",
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -2403,7 +2619,10 @@
       "Client": {
         "type": "object",
         "description": "Full client object as returned by the API. The data store is NoSQL, so extra fields may be present (see `additionalProperty` in the example), and some legacy fields may have mixed types.",
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -2529,7 +2748,11 @@
       "ProductInput": {
         "type": "object",
         "description": "Product payload for POST /product and PUT /product/{productId}",
-        "required": ["id", "name", "unitPrice"],
+        "required": [
+          "id",
+          "name",
+          "unitPrice"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -2571,7 +2794,10 @@
       "Product": {
         "type": "object",
         "description": "Full product object as returned by the API. The data store is NoSQL, so extra fields may be present (see `additionalProperty` in the example).",
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -2640,7 +2866,10 @@
       "InvoiceLineInput": {
         "type": "object",
         "description": "Invoice line when creating an invoice. `product` must reference an existing product id.",
-        "required": ["product", "amount"],
+        "required": [
+          "product",
+          "amount"
+        ],
         "properties": {
           "product": {
             "type": "string",
@@ -2920,7 +3149,10 @@
       "InvoiceCreate": {
         "type": "object",
         "description": "Payload for creating an invoice. Requires that the referenced client and product ids exist (and, for forwarding endpoints, are already sent to the accounting software).",
-        "required": ["client", "lines"],
+        "required": [
+          "client",
+          "lines"
+        ],
         "properties": {
           "client": {
             "type": "string",
@@ -3115,6 +3347,21 @@
           }
         },
         "additionalProperties": true
+      },
+      "Attachment": {
+        "type": "object",
+        "properties": {
+          "attachment": {
+            "type": "string",
+            "description": "Original file name of the attachment",
+            "example": "image.jpg"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME type of the attachment",
+            "example": "image/jpg"
+          }
+        }
       }
     }
   }
