@@ -1805,6 +1805,82 @@
         }
       }
     },
+    "/api/sell/import": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "Import one invoice",
+        "description": "Imports the invoice exactly as provided. Prices, dates and other calculated or generated values are not recalculated or regenerated.",
+        "operationId": "importInvoice",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Invoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/InvoiceResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/sell/import/multiple": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "Import multiple invoices",
+        "description": "Imports an array of invoices exactly as provided. Prices, dates and other calculated or generated values are not recalculated or regenerated.",
+        "operationId": "importInvoices",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/components/schemas/Invoice"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Imported invoices",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Invoice"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
     "/api/jpg/{id}": {
       "get": {
         "tags": [
@@ -2064,82 +2140,7 @@
         }
       }
     },
-    "/api/sell/import": {
-      "post": {
-        "tags": [
-          "Invoice Integration"
-        ],
-        "summary": "Import one invoice",
-        "description": "Imports the invoice exactly as provided. Prices, dates and other calculated or generated values are not recalculated or regenerated.",
-        "operationId": "importInvoice",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Invoice"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/InvoiceResponse"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
-        }
-      }
-    },
-    "/api/sell/import/multiple": {
-      "post": {
-        "tags": [
-          "Invoice Integration"
-        ],
-        "summary": "Import multiple invoices",
-        "description": "Imports an array of invoices exactly as provided. Prices, dates and other calculated or generated values are not recalculated or regenerated.",
-        "operationId": "importInvoices",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "minItems": 1,
-                "items": {
-                  "$ref": "#/components/schemas/Invoice"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Imported invoices",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Invoice"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          }
-        }
-      }
-    },
+
     "/api/client/{clientId}/vies": {
       "get": {
         "tags": [
